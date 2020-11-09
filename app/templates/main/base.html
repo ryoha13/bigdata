@@ -32,8 +32,18 @@
             </div>
         {% endfor %}
     </div>
-    {% block page_content %}
-    {% endblock %}
+    {% include 'main/_header.html' %}
+    {% include 'main/_sidebar.html' %}
+
+    <div class="content-wrapper">
+
+        {% include 'main/_innerNav.html' %}
+        {% block page_content %}
+        {% endblock %}
+    </div>
+
+    {% include 'main/_footer.html' %}
+
 {% endblock %}
 
 {% block scripts %}
@@ -54,8 +64,8 @@
     <script src="{{ url_for('static', filename='plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ url_for('static', filename='plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/adminlte.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/pages/dashboard.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+{#    <script src="{{ url_for('static', filename='js/pages/dashboard.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='js/demo.js') }}"></script>#}
 {% endblock %}
 </body>
 </html>

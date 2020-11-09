@@ -2,6 +2,7 @@
 
 class Config(object):
     SECRET_KEY = 'a random string'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     @staticmethod
     def init_app(app):
