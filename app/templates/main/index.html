@@ -13,12 +13,12 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
-                    <div id="main1" style="width: 600px;height:400px;"></div>
+                <div class="col-lg-2">
+                    {#                    <div id="main1" style="width: 600px;height:400px;"></div>#}
                 </div>
                 <!-- /.col-md-6 -->
-                <div class="col-lg-6">
-                    <div id="main2" style="width: 600px;height:400px;"></div>
+                <div class="col-lg-10">
+                    <div id="main2" style="width: 1200px;height:400px;"></div>
                 </div>
                 <!-- /.col-md-6 -->
             </div>
@@ -30,57 +30,78 @@
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript">
-        let mainChart1 = echarts.init(document.getElementById('main1'));
-        let option = {
-            title: {
-                text: '学习语言人数统计'
-            },
-            tooltip: {},
-            legend: {
-                data: ['销量']
-            },
-            xAxis: {
-                data: {{ language|safe }}
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: {{ value|safe }}
-            }]
-        };
-        mainChart1.setOption(option);
+        {#let mainChart1 = echarts.init(document.getElementById('main1'));#}
+        {#let option = {#}
+        {#    title: {#}
+        {#        text: '学习语言人数统计'#}
+        {#    },#}
+        {#    tooltip: {},#}
+        {#    legend: {#}
+        {#        data: ['销量']#}
+        {#    },#}
+        {#    xAxis: {#}
+        {#        data: {{ language|safe }}#}
+        {#    },#}
+        {#    yAxis: {},#}
+        {#    series: [{#}
+        {#        name: '销量',#}
+        {#        type: 'bar',#}
+        {#        data: {{ value|safe }}#}
+        {#    }]#}
 
-        let mainChart2 = echarts.init(document.getElementById('main2'));
-        let option2 = {
-            visualMap: {
-                show: false,
-                type: 'continuous',
-                seriesIndex: 0,
-                min: 0,
-                max: 400
-            },
-            title: {
-                left: 'center',
-                text: 'Gradient along the y axis'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            xAxis: {
-                data: dateList
-            },
-            yAxis: {
-                splitLine: {show: false}
-            },
-            grid: {
-                bottom: '60%'
-            },
-            series: {
-                type: 'line',
-                showSymbol: false,
-                data: valueList
-            },
-        }
+            {#mainChart1.setOption(option);#}
+
+            let mainChart2 = echarts.init(document.getElementById('main2'));
+            let option2 = {
+                title: {
+                    text: 'cost for tc'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['inner', 'external', 'wechat']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: {{ new_date | safe }}
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'inner',
+                        type: 'line',
+                        stack: 'cost',
+                        data: {{ inner_cost }}
+                    },
+                    {
+                        name: 'external',
+                        type: 'line',
+                        stack: 'cost',
+                        data: {{ external_cost }}
+                    },
+                    {
+                        name: 'wechat',
+                        type: 'line',
+                        stack: 'cost',
+                        data: {{ wechat_cost }}
+                    }
+                ]
+            }
+            mainChart2.setOption(option2);
     </script>
 {% endblock %}
